@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* interval between updates (in ms) */
-const unsigned int interval = 1000;
+const unsigned int interval = 250;
 
 /* text to show if no value can be retrieved */
 static const char unknown_str[] = "n/a";
@@ -65,13 +65,13 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ netspeed_rx, "[ETH: %sB/s]  ",        "enp34s0" },
-	{ netspeed_rx, "[WIFI %sB/s]  ",        "wlan0" },
-	{ run_command, "[Vol: %s]  ",    "pactl get-sink-volume 0 | grep -oE '[0-9]{1,3}%' | head -1" },
-	{ cpu_perc, "[CPU %s%%]  ",      NULL },
-	{ ram_perc, "[RAM %s%%]  ",      NULL },
-	{ run_command, "[BAT %s%]  ",  "acpi -b | grep -Po '\\d+%' || echo 'n\\a'" },
-	{ disk_perc, "[DISK %s%%]  ",    "/" },
-	{ datetime, "%s",                "%a %b %d %r" },
+	{ ipv4, "[IP %s]  ",		"enp34s0" },
+	{ run_command, "[Vol: %s]  ",   "~/scripts/get-volume.sh" },
+	{ cpu_perc, "[CPU %s%%]  ",     NULL },
+	{ ram_perc, "[RAM %s%%]  ",     NULL },
+	{ disk_perc, "[ROOT %s%%]  ",   "/" },
+	{ disk_perc, "[HOME %s%%]  ",	"/home" },
+	{ datetime, "%s",               "%a %b %d %r" },
+	//{ run_command, " %s",		 "cat $HOME/suckless/slstatus/motd.txt" }
 	
 };
